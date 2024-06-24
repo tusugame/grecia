@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronómetro hasta el 25 de junio</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <style>
+         body {
+            background: linear-gradient(to left, #cce6ff, #b0c4de);
+            height: 100vh;
+            display: flex;
+    
+          
+            margin: 0;
+        }
+        .countdown {
+            text-align: center;
+            margin-top: 10vh;
+        }
+        .countdown .time-box {
+            font-size: 2em;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+        .countdown .label {
+            font-size: 0.5em;
+            color: #888;
+        }
+        .title {
+            text-align: center;
+            margin-top: 5vh;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        .cards {
+    text-align: center;
+    margin-top: 5vh;
+}
+
+.card {
+    display: inline-block;
+    margin: 10px;
+    width: 200px;
+    height: 250px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f0f0f0; /* Color de fondo principal */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Efecto de escala al pasar el mouse */
+}
+
+.card-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    color: #555; /* Color del texto */
+    font-weight: bold;
+    opacity: 0.9; /* Opacidad del texto */
+}
+
+/* Estilos para los diferentes colores de fondo */
+
+.card:nth-child(odd) {
+    background-color: #ffd1dc; /* Rosa pastel */
+}
+
+.card:nth-child(even) {
+    background-color: #c9c9ff; /* Lila pastel */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title"><H2>Cuenta regresiva para el cumpleaños de La niña mas hermosa del mundo</H2>⭐Grecia❤️⭐</div>
+        <div class="countdown row justify-content-center">
+            <div class="col-auto">
+                <div class="time-box">
+                    <div id="days"></div>
+                    <div class="label">Días</div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="time-box">
+                    <div id="hours"></div>
+                    <div class="label">Horas</div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="time-box">
+                    <div id="minutes"></div>
+                    <div class="label">Minutos</div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="time-box">
+                    <div id="seconds"></div>
+                    <div class="label">Segundos</div>
+                </div>
+            </div>
+        </div>
+        <div class="cards">
+            <a href="flower.html" class="card">
+                <div class="card-content">Regalo 1</div>
+            </a>
+            <div class="card" onclick="showAlert('Regalo 2')">
+                <div class="card-content">Regalo 2</div>
+            </div>
+            <div class="card" onclick="showAlert('Regalo 3')">
+                <div class="card-content">Regalo 3</div>
+            </div>
+            <div class="card" onclick="showAlert('Regalo 4')">
+                <div class="card-content">Regalo 4</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+        function updateTimer() {
+            const targetDate = new Date('June 25, ' + new Date().getFullYear() + ' 00:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours;
+                document.getElementById('minutes').innerText = minutes;
+                document.getElementById('seconds').innerText = seconds;
+            } else {
+                document.getElementById('days').innerText = 0;
+                document.getElementById('hours').innerText = 0;
+                document.getElementById('minutes').innerText = 0;
+                document.getElementById('seconds').innerText = 0;
+                document.body.innerHTML = '<div class="container"><div class="countdown row justify-content-center"><div class="col-auto"><div class="time-box">¡Ya es 25 de junio!</div></div></div></div>';
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+        
+        function showAlert(cardName) {
+        Swal.fire({
+            icon: 'info',
+            title: 'Oops...',
+            text: `No puedes abrir ${cardName} todavía`,
+            confirmButtonText: 'Entendido'
+        });
+    }
+    </script>
+</body>
+</html>
